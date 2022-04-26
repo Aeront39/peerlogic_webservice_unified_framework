@@ -18,8 +18,6 @@ def call_models():
     supported_services = {"intelligent_assignment_volume" : "http://152.7.99.200:5000/volume",
                           "intelligent_assignment_problems" : "http://152.7.99.200:5000/problem",
                           "intelligent_assignment_suggestions" : "http://152.7.99.200:5000/suggestions",
-                          "reputation" : "http://peerlogic.csc.ncsu.edu/reputation/calculations/reputation_algorithms",
-                          "topic_bidding": "http://peerlogic.csc.ncsu.edu/intelligent_assignment/merge_teams"
                           }
     
     # get JSON input as a dict
@@ -29,7 +27,7 @@ def call_models():
     output = {}
     
     # each top level entry is a service to call
-    for service in in_dict.keys():
+    for service in in_dict["services"]:
         
         # check if service is supported
         if service not in supported_services.keys():
@@ -37,7 +35,7 @@ def call_models():
             raise UnsupportedModelException()
             
         # if so, get info for this service
-        json_dict_for_service = in_dict[service]
+        json_dict_for_service = in_dict["input"]
    
         service_url = supported_services[service]
         
