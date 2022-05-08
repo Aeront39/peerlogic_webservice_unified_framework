@@ -50,6 +50,6 @@ def call_models():
         return flask.Response(json.dumps(output))
     """
     output["Test"] = True
-    return flask.Respose(json.dumps(output))
+    return flask.Response(json.dumps(output))
 if __name__=='__main__':
     app.run(debug=True, port=3013)
