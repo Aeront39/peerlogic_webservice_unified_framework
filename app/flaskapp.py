@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+#!/usr/bin/env python -B
+from flask import Flask
 import flask
 import json
 import requests
