@@ -2,15 +2,15 @@
 from flask import Flask
 import flask
 import json
-import requests
-from werkzeug.exceptions import HTTPException
+#import requests
+#from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 
 # define custom error code
-class UnsupportedModelException(HTTPException):
-    code = 404
-    description = "Error: the model you requested is not supported. Please check the spelling and model and try again."
+#class UnsupportedModelException(HTTPException):
+#    code = 404
+#    description = "Error: the model you requested is not supported. Please check the spelling and model and try again."
 
 @app.route('/call_models',methods=['POST'])
 def call_models():
@@ -26,28 +26,30 @@ def call_models():
     
     # prepare output JSON
     output = {}
+    """   
+        # each top level entry is a service to call
+        for service in in_dict["services"]:
+            
+            # check if service is supported
+            if service not in supported_services.keys():
+                
+                raise UnsupportedModelException()
+                
+            # if so, get info for this service
+            json_dict_for_service = in_dict["input"]
+       
+            service_url = supported_services[service]
+            
+            # make POST request, get reply
+            response = requests.post(service_url, json=json_dict_for_service)
+            
+            # add reply to output json
+            output[service] = response.json()
     
-    # each top level entry is a service to call
-    for service in in_dict["services"]:
-        
-        # check if service is supported
-        if service not in supported_services.keys():
-            
-            raise UnsupportedModelException()
-            
-        # if so, get info for this service
-        json_dict_for_service = in_dict["input"]
-   
-        service_url = supported_services[service]
-        
-        # make POST request, get reply
-        response = requests.post(service_url, json=json_dict_for_service)
-        
-        # add reply to output json
-        output[service] = response.json()
-
-    # have concluded for all services, send reply
-    return flask.Response(json.dumps(output))
-
+        # have concluded for all services, send reply
+        return flask.Response(json.dumps(output))
+    """
+    output["Test"] = True
+    return flask.Respose(json.dumps(output))
 if __name__=='__main__':
     app.run(debug=True, port=3013)
