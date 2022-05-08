@@ -1,15 +1,16 @@
-#AllReviewInterface
+# AllReviewInterface
 This is a simple web service that allows a number of student reviews to be sent to various other web services and their results collected in an easy-to-parse form. The purpose of this is to make it easier to run student reviews against various review web services simultaneously.
 
 That being said, the primary purpose for the creation of this web service is to serve as a copyable template for future web services created for the PeerLogic web server. This README similarly serves as a template for a proper README for such services.
 
 Note that no more than 10 reviews should be passed in at a time for performance considerations, if possible.
 
-#URL Path
+## URL Path
 This service can be reached at peerlogic.csc.ncsu.edu/allreviewinterface/call_models. It is set up on port 3013 of the PeerLogic web server. (Note that all services MUST have unique ports).
 
-#Input
+## Input
 This service expects a GET request with the following JSON payload format:
+```
 {
 	"services": the names of the PeerLogic web services to call. The following are currently supported:
 		-intelligent_assignment_volume (measures the length and word count of the reviews)
@@ -17,6 +18,7 @@ This service expects a GET request with the following JSON payload format:
 		-intelligent_assignment_suggestions (determines whether the review had suggestions)
 	
 	"input": contains the input JSON to be passed to the review services. This web service assumes all services called can use the same input format, which is true for the currently supported services. This JSON component contains:
+[
 	{
 		"reviews": a list of the review objects to have NLP applied to. That list contains items of the following format:
 			[
@@ -25,7 +27,9 @@ This service expects a GET request with the following JSON payload format:
 			]
 			
 	}
-# Example Input
+```
+## Example Input
+```
 { "services" : ["intelligent_assignment_volume","intelligent_assignment_problems"],
 	
 	"input" : 
@@ -45,5 +49,5 @@ This service expects a GET request with the following JSON payload format:
   ]
   }
 }
-
-# Example Output
+```
+## Example Output
