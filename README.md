@@ -51,3 +51,48 @@ This service expects a GET request with the following JSON payload format:
 }
 ```
 ## Example Output
+```
+{
+	"intelligent_assignment_volume": {
+		"reviews": [
+			{
+				"id": 1,
+				"text": "This is incredible! I can't find a single thing wrong with your project! This is simply great, you are amazing, great job! Only thing I can say is I might have made the font size larger.",
+				"total_volume": 43,
+				"volume_without_stopwords": 26
+			},
+			{
+				"id": 2,
+				"text": "I think your project is poorly put together and is missing most of the project requirements.",
+				"total_volume": 17,
+				"volume_without_stopwords": 9
+			},
+			{
+				"id": 3,
+				"text": "It was good.",
+				"total_volume": 4,
+				"volume_without_stopwords": 2
+			}
+		]
+	},
+	"intelligent_assignment_problems": {
+		"reviews": [
+			{
+				"id": 1,
+				"problems": "Present",
+				"text": "This is incredible! I can't find a single thing wrong with your project! This is simply great, you are amazing, great job! Only thing I can say is I might have made the font size larger."
+			},
+			{
+				"id": 2,
+				"problems": "Present",
+				"text": "I think your project is poorly put together and is missing most of the project requirements."
+			},
+			{
+				"id": 3,
+				"problems": "Absent",
+				"text": "It was good."
+			}
+		]
+	}
+}
+```
